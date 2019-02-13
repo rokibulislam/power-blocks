@@ -29,10 +29,13 @@ export default class EditPriceTable extends Component {
 			buttonColorHover,
 		} = attributes;
 
-		const rows = items.map( (item, index ) => {
+		const rows = items.map( ( item, index ) => {
 			return (
 				<div key={ 'power-item-' + index }>
-					<div> <span > Delete </span> </div>
+					<h2> { item.header } </h2>
+					<ul> { item.features } </ul>
+					<p> { item.price } </p>
+					<a href={ item.buttonUrl }>  Free Trial </a>
 				</div>
 			);
 		} );
@@ -64,6 +67,17 @@ export default class EditPriceTable extends Component {
 								price: '$199',
 								buttonName: 'Free Trial',
 								buttonUrl: 'http://delabon.com/',
+								backgroundColor: '',
+								titleColor: '',
+								titleFontSize: '',
+								featuresColor: '',
+								priceColor: '',
+								priceBackgroundColor: '',
+								priceFontSize: '',
+								buttonColor: '',
+								buttonBackgroundColor: '',
+								buttonColorHover: '',
+								buttonBackgroundColorHover: '',
 							} ] ) } );
 						} }
 					>

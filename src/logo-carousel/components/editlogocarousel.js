@@ -53,15 +53,16 @@ export default class EditLogoCarousel extends Component {
 													newObject,
 												],
 											} );
+											
 										} }
 										type="image"
 										value={ logo.image }
-										render={ ( { open } ) => !! logo.image ? (
-											<button>
-												{ this.props.isSelected && (
+										render={ ( { open } ) =>
+											!! logo.image ? (
+												<div> { this.props.isSelected && (
 													<div className="gts__picture__actions">
 														<button className="removebtn"
-															onClick={ () => {
+															onClick={ ( media ) => {
 																const newObject = Object.assign(
 																	{},
 																	logo,
@@ -70,9 +71,9 @@ export default class EditLogoCarousel extends Component {
 																	}
 																);
 																this.props.setAttributes( {
-																	testimonials: [
+																	logos: [
 																		...logos.filter(
-																			item => item.index != logo.index
+																			item => item.index !== logo.index
 																		),
 																		newObject,
 																	],
@@ -81,20 +82,27 @@ export default class EditLogoCarousel extends Component {
 														>
 															× Remove
 														</button>
-													</div>
-												) }
-												<buton className="gts__picture__image" onClick={ open } /> </button>
-										) : (
-											<button href="#"
-												className="gts__picture__image"
-												onClick={ open }
-												style={ {
-													backgroundImage: `url( ${ logo.image } )`,
-												} }
-											>
-											Select Image
-											</button>
-										)
+													</div> ) }
+												<div
+													className="gts__picture__image"
+													style={{
+													backgroundImage: `url(${logo.image})`
+													}}
+													onClick={open}
+												/>
+												</div>
+											) : (
+												<a
+													href="#"
+													className="gts__picture__image"
+													onClick={ open }
+													style={ {
+														backgroundImage: `url( ${ logo.image } )`,
+													} }
+												>
+												Select Image
+												</a>
+											) 
 										}
 									/>
 								</div>

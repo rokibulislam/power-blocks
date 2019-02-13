@@ -1,31 +1,40 @@
-const  { Component } = wp.element;
-export default class Button extends Component {
+const { Component } = wp.element;
+import classnames from 'classnames';
+export default class PBButton extends Component { 
 	render() {
 		const {
 			attributes: {
-				buttonText,
-				buttonUrl,
-				borderRadius,
-				buttonSize,
-				buttonBackground,
-				borderColor,
-				hoverColor,
-				buttonTextColor,
-				buttonTarget,
-				buttonAlignment,
+				items,
 			},
 			setAttributes,
+			state,
+			clickHandler,
+			isSelected,
+			removeItem,
 		} = this.props;
+		
+		const rows = items.map( ( item, index ) => {
+			return (
+				<a
+				href={item.buttonUrl} 
+				key={ index } className={ classnames(
+						this.props.className,
+						'pb-button'
+					) }
+					style={ {
+						color: item.buttonTextColor,
+						backgroundColor: item.buttonBackground,
+						borderRadius: item.borderRadius,
+					} }
+				>  
+					<span> { item.buttonText } </span>
+				</a>
+			)
+		} );
 		return (
 			<div>
-				<a href={ buttonText }
-					style={ {
-						color: buttonTextColor,
-						backgroundColor: buttonBackground,
-						borderRadius: borderRadius,
-					} }
-				> { buttonText } </a>
+				{ rows }
 			</div>
-		);  
+		);
 	}
 }

@@ -5,7 +5,7 @@
  * Description: Powerful and feature rich blocks for the WordPress Gutenberg editor.
  * Author: weDevs
  * Author URI: https://getpowerblocks.com/
- * Version: 0.1.0
+ * Version: 0.2.0
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  */
@@ -137,8 +137,10 @@ class PowerBlocks {
     public function includes() {
 
     	require_once __DIR__ . '/includes/Blocks.php';
+    	// require_once __DIR__ . '/includes/mailchimp.php';
 
     	new PowerBlocks\Blocks();
+    	// new PowerBlocks\MailChimp();
     }
 
     /**

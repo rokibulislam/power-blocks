@@ -67,22 +67,66 @@ export default class Inspector extends Component {
 		const onChangeButtonHoverColor = value => setAttributes( { buttonColorHover: value } );
 		const onChangeBackgroundColor = value => setAttributes( { buttonColorHover: value } );
 		return (
-			<InspectorControls key="inspector">
+			<InspectorControls key="inspector">	
 				<PanelColorSettings
-					title={ __( 'Background Color' ) }
-					colorValue={ backgroundColor }
+					title={ __( 'Color Settings' ) }
+					//colorValue={ backgroundColor }
 					initialOpen={ false }
-					colorSettings={ [ {
-						value: backgroundColor,
-						onChange: onChangeBackgroundColor,
-						label: __( 'Title  Color' ),
-					} ] }
+					colorSettings={
+						[
+							{
+								value: backgroundColor,
+								onChange: onChangeBackgroundColor,
+								label: __( 'Backgroun  Color' ),
+							},
+							{
+								value: titleColor,
+								onChange: onChangeTitleColor,
+								label: __( 'Title  Color' ),
+							},
+							{
+								value: priceBackgroundColor,
+								onChange: onChangePriceBackgroundColor,
+								label: __( 'Price Background  Color' ),
+							},
+							{
+								value: priceColor,
+								onChange: onChangePriceColor,
+								label: __( 'Price  Color' ),
+							},
+							{
+								value: featuresColor,
+								onChange: onChangeFeatureColor,
+								label: __( 'Feature Color' ),
+							},
+							{
+								value: buttonBackgroundColor,
+								onChange: onChangeButtoneBackgroundColor,
+								label: __( 'Button Background  Color' ),
+							},
+							{
+								value: buttonColor,
+								onChange: onChangeButtonColor,
+								label: __( 'Button Color' ),
+							},
+							{
+								value: buttonBackgroundColorHover,
+								onChange: onChangeButtoneHoverBackgroundColor,
+								label: __( 'Button Hover Background  Color' ),
+							},
+							{
+								value: buttonColorHover,
+								onChange: onChangeButtonHoverColor,
+								label: __( 'Button Hover Color' ),
+							},
+						]
+					}
 				>
 
 				</PanelColorSettings>
 
 				<PanelBody
-					title={ __( 'Title Settings' ) }
+					title={ __( 'Font Settings' ) }
 					initialOpen={ false }
 				>
 					<RangeControl
@@ -94,38 +138,6 @@ export default class Inspector extends Component {
 						step={ 1 }
 					/>
 
-					<PanelColorSettings
-						title={ __( 'Title Color' ) }
-						colorValue={ titleColor }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: titleColor,
-							onChange: onChangeTitleColor,
-							label: __( 'Title  Color' ),
-						} ] }
-					>
-
-					</PanelColorSettings>
-
-				</PanelBody>
-
-				<PanelBody
-					title={ __( 'Price Settings' ) }
-					initialOpen={ false }
-				>
-
-					<PanelColorSettings
-						title={ __( 'Price Background  Color' ) }
-						colorValue={ priceBackgroundColor }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: priceBackgroundColor,
-							onChange: onChangePriceBackgroundColor,
-							label: __( 'Price Background  Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-
 					<RangeControl
 						label={ __( 'Price Font Size' ) }
 						value={ priceFontSize }
@@ -134,36 +146,6 @@ export default class Inspector extends Component {
 						max={ 24 }
 						step={ 1 }
 					/>
-
-					<PanelColorSettings
-						title={ __( 'Price Color' ) }
-						colorValue={ priceColor }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: priceColor,
-							onChange: onChangePriceColor,
-							label: __( 'Price Background  Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-				</PanelBody>
-
-				<PanelBody
-					title={ __( 'Feature Settings' ) }
-					initialOpen={ false }
-				>
-					<PanelColorSettings
-						title={ __( 'Feature  Color' ) }
-						colorValue={ featuresColor }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: featuresColor,
-							onChange: onChangeFeatureColor,
-							label: __( 'Feature Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-
 					<RangeControl
 						label={ __( 'Feature Font Size' ) }
 						value={ featuresFontSize }
@@ -172,60 +154,6 @@ export default class Inspector extends Component {
 						max={ 24 }
 						step={ 1 }
 					/>
-
-				</PanelBody>
-
-				<PanelBody
-					title={ __( 'Button Settings' ) }
-					initialOpen={ false }
-				>
-
-					<PanelColorSettings
-						title={ __( 'Button Background  Color' ) }
-						colorValue={ buttonBackgroundColor }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: buttonBackgroundColor,
-							onChange: onChangeButtoneBackgroundColor,
-							label: __( 'Button Background  Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-					<PanelColorSettings
-						title={ __( 'Button Color' ) }
-						colorValue={ buttonColor }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: buttonColor,
-							onChange: onChangeButtonColor,
-							label: __( 'Button Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-
-					<PanelColorSettings
-						title={ __( 'Button Hover Background  Color' ) }
-						colorValue={ buttonBackgroundColorHover }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: buttonBackgroundColorHover,
-							onChange: onChangeButtoneHoverBackgroundColor,
-							label: __( 'Button Hover Background  Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-					<PanelColorSettings
-						title={ __( 'Button Hover Color' ) }
-						colorValue={ buttonColorHover }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: buttonColorHover,
-							onChange: onChangeButtonHoverColor,
-							label: __( 'Button Hover Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-
 					<RangeControl
 						label={ __( 'Button Font Size' ) }
 						value={ featuresFontSize }

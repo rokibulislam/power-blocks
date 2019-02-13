@@ -11,6 +11,9 @@ const { PanelBody } = wp.components;
 
 export default class Inspector extends Component {
 	render() {
+		const {
+			adBackgroundColor,
+		} = this.props;
 		return (
 			<InspectorControls>
 				<PanelBody
@@ -23,7 +26,7 @@ export default class Inspector extends Component {
 						colorSettings={ 
 							[
 								{
-									value: memberBackgroundColor,
+									value: adBackgroundColor,
 									label: __( 'Ad Background Color' ),
 								},
 							]

@@ -1,0 +1,22 @@
+WithSelect HOC maps State To Props 
+wtihDispatch HOC maps update props to state management
+
+Like React-Redux we use mapStateToProps
+const { WithSelect, withDispatch,registerStore, combineReducers } = wp.data;
+const { withState } =wp.compose;
+
+let options = {
+    actions: {
+
+    },
+    selectors: {
+
+    },
+    resolvers: {
+
+    }
+};
+
+options.reducer = combineReducers({
+    
+})

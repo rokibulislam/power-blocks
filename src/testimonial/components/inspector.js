@@ -29,13 +29,7 @@ const {
  * Create an Inspector Controls wrapper Component
  */
 export default class Inspector extends Component {
-
-	constructor( props ) {
-		super( ...arguments );
-	}
-
 	render() {
-
 		// Cite Alignment Options
 		const citeAlignOptions = [
 			{ value: 'left-aligned', label: __( 'Left Aligned' ) },
@@ -71,7 +65,10 @@ export default class Inspector extends Component {
 				testimonialBackgroundColor, 
 				testimonialTextColor, 
 				testimonialFontSize, 
-				testimonialCiteAlign 
+				testimonialCiteAlign,
+				testimonialImageStyle,
+				testimonialPadding,
+				testimonialMargin,
 			}, 
 			isSelected, 
 			className, 
@@ -86,7 +83,50 @@ export default class Inspector extends Component {
 		const onChangeTestimonialContentColor = value => setAttributes( { testimonialContentColor: value } );
 		return (
 			<InspectorControls key="inspector">
-				<PanelBody>
+				<PanelColorSettings
+					title={ __( 'Color Settings' ) }
+					initialOpen={ false }
+					colorSettings={
+						[
+							{
+								value: testimonialBackgroundColor,
+								colors: backgroundColors,
+								onChange: onChangeBackgroundColor,
+								label: __( 'Background Color' ),
+							},
+							{
+								value: testimonialTextColor,
+								colors: backgroundColors,
+								onChange: onChangeTextColor,
+								label: __( 'Text Color' ),
+							},
+							{
+								value: testimonialTitleColor,
+								colors: backgroundColors,
+								onChange: onChangeTestimonialTitleColor,
+								label: __( 'Testimonial Title  Color' ),
+							},
+							{
+								value: testimonialContentColor,
+								colors: backgroundColors,
+								onChange: onChangeTestimonialContentColor,
+								label: __( 'Testimonial Content  Color' ),
+							},
+							{
+								value: testimonialNameColor,
+								colors: backgroundColors,
+								onChange: onChangeTestimonialNameColor,
+								label: __( 'Testimonial Name  Color' ),
+							},
+						]
+					}
+				>
+				</PanelColorSettings>
+
+				<PanelBody
+					title={ __( 'Font  Settings' ) }
+					initialOpen={ false }
+				>
 					<RangeControl
 						label={ __( 'Font Size' ) }
 						value={ testimonialFontSize }
@@ -103,60 +143,15 @@ export default class Inspector extends Component {
 						value={ testimonialCiteAlign }
 						onChange={ ( value ) => this.props.setAttributes( { testimonialCiteAlign: value } ) }
 					/>
-
-					<PanelColorSettings
-						title={ __( 'Background Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: testimonialBackgroundColor,
-							colors: backgroundColors,
-							onChange: onChangeBackgroundColor,
-							label: __( 'Background Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-
-					<PanelColorSettings
-						title={ __( 'Text Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: testimonialTextColor,
-							onChange: onChangeTextColor,
-							label: __( 'Text Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
-				</PanelBody>
-
-				<PanelBody
-					title={ __( 'Testimonial Name Settings' ) }
-					initialOpen={ false }
-				>
 					<RangeControl
 						label={ __( 'Testimonial Name Font Size' ) }
-						value={ testimonialFontSize }
+						value={ testimonialNameFontSize }
 						onChange={ ( value ) => this.props.setAttributes( { testimonialNameFontSize: value } ) }
 						min={ 14 }
 						max={ 24 }
 						step={ 1 }
 					/>
-					<PanelColorSettings
-						title={ __( 'Testimonial Name Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: testimonialNameColor,
-							onChange: onChangeTestimonialNameColor,
-							label: __( 'Testimonial Name  Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
 
-				</PanelBody>
-
-				<PanelBody
-					title={ __( 'Testimonial Designation Settings' ) }
-					initialOpen={ false }
-				>
 					<RangeControl
 						label={ __( 'Testimonial Title Font Size' ) }
 						value={ testimonialTitleFontSize }
@@ -165,23 +160,7 @@ export default class Inspector extends Component {
 						max={ 24 }
 						step={ 1 }
 					/>
-					<PanelColorSettings
-						title={ __( 'Testimonial Title Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: testimonialTitleColor,
-							onChange: onChangeTestimonialTitleColor,
-							label: __( 'Testimonial Title  Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
 
-				</PanelBody>
-
-				<PanelBody
-					title={ __( 'Testimonial Content Settings' ) }
-					initialOpen={ false }
-				>
 					<RangeControl
 						label={ __( 'Testimonial Content Font Size' ) }
 						value={ testimonialContentFontSize }
@@ -190,17 +169,40 @@ export default class Inspector extends Component {
 						max={ 24 }
 						step={ 1 }
 					/>
-					<PanelColorSettings
-						title={ __( 'Testimonial Content Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: testimonialContentColor,
-							onChange: onChangeTestimonialContentColor,
-							label: __( 'Testimonial Content  Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
+				</PanelBody>
 
+				<PanelBody
+					title={ __( 'Testimonial Settings' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Testimonial Margin' ) }
+						value={ testimonialMargin }
+						onChange={ ( value ) => this.props.setAttributes( { testimonialMargin: value } ) }
+						min={ 1 }
+						max={ 30 }
+						step={ 1 }
+					/>
+
+					<RangeControl
+						label={ __( 'Testimonial Padding' ) }
+						value={ testimonialPadding }
+						onChange={ ( value ) => this.props.setAttributes( { testimonialPadding: value } ) }
+						min={ 1 }
+						max={ 30 }
+						step={ 1 }
+					/>
+
+					<SelectControl
+						label={ __( 'Image  Style' ) }
+						description={ __( '' ) }
+						options={ [
+							{ label: 'Circle', value: 'circle' },
+							{ label: 'Round', value: 'round' },
+						] }
+						value={ testimonialImageStyle }
+						onChange={ ( value ) => this.props.setAttributes( { testimonialImageStyle: value } ) }
+					/>
 				</PanelBody>
 			</InspectorControls>
 		);

@@ -1,20 +1,15 @@
-/**
- * Accordion: blocks
- *
- * Registering a Accordion block with Gutenberg.
- * Accordion block, renders and saves the same content without any interactivity.
- */
 import classnames from 'classnames';
 import TeamMember from './components/teammember';
 import editTeamMember from './components/editteammember';
+// import defaultAttributes from './components/attributes';
+import gutenTeamAttribute from './components/attributes';
 //  Import CSS.
 import './styles/style.scss';
 import './styles/editor.scss';
-
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 // Register editor components
-const { RichText } = wp.editor;
+// const { RichText } = wp.editor;
 // Register components
 const { Button, Dashicon } = wp.components;
 
@@ -29,289 +24,97 @@ registerBlockType( 'power-blocks/team-member', {
 	],
 	attributes: {
 
-		memberName: {
-			type: 'string',
-			selector: '.pb-team-member-name',
+		items: {
+			type: 'array',
+			default: [
+				{
+					memberName: 'Mahbubur Rahman',
+					memberNameColor: '#fff',
+					memberNameFontSize: 24,
+					memberDesignation: 'Software Engineer',
+					memberDesignationColor: '#fff',
+					memberDesignationFontSize: 15,
+					memberDescription: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text',
+					memberDescriptionColor: '#fff',
+					memberDescriptionFontSize: 15,
+					// memberAlignment: 'left',
+					memberBackgroundColor: '#2574A9',
+					memberboxshadow: 0,
+					memberBorderRadius: 0,
+					memberMargin: 0,
+					memberPadding: 0,
+					memberImageStyle: 'round',
+					socialIconWidth: 32,
+					socialIconHeight: 32,
+					socialIconLineHeight: 32,
+					socialIconShow: true,
+					socialColor: false,
+					socialIconColor: '#fff',
+					socialIconBackgroundColor: '#d34836',
+					socialIconBorderColor: '',
+					hoverEffect: true,
+					hoverBackgroundColor: '',
+					hoverBackgroundOpacity: '',
+					facebookLink: '',
+					twitterLink: '',
+					googleplusLink: '',
+					memberImgURL: '',
+					memberImgID: '',
+				},
+			],
 		},
-		memberNameColor: {
-			type: 'string',
-			default: '',
-		},
-		memberNameFontSize: {
-			type: 'number',
-			default: 18,
-		},
-		memberDesignation: {
-			type: 'string',
-			selector: '.pb-team-member-designation',
-		},
-		memberDesignationColor: {
-			type: 'string',
-			default: '',
-		},
-		memberDesignationFontSize: {
-			type: 'number',
-			default: 18,
-		},
-		memberDescription: {
-			type: 'string',
-			selector: '.pb-team-member-description',
-		},
-		memberDescriptionFontSize: {
-			type: 'number',
-			default: 18,
-		},
-		memberDescriptionColor: {
-			type: 'string',
-			default: '',
-		},
-		memberAlignment: {
-			type: 'string',
-			default: 'left',
-		},
-		memberBackgroundColor: {
-			type: 'string',
-			default: '',
-		},
-		memberboxshadow: {
-			type: 'number',
-			default: 0,
-		},
-		memberBorderRadius: {
-			type: 'number',
-			default: 0,
-		},
-		memberMargin: {
-			type: 'number',
-			default: 0,
-		},
-		memberPadding: {
-			type: 'number',
-			default: 0,
-		},
-		memberImageStyle: {
-			type: 'string',
-			default: 'round',
-		},
-
-		socialIconWidth: {
-			type: 'number',
-			default: 32,
-		},
-
-		socialIconHeight: {
-			type: 'number',
-			default: 32,
-		},
-
-		socialIconLineHeight: {
-			type: 'string',
-			default: 32,
-		},
-
-		socialIconShow: {
-			type: 'boolean',
-			default: true,
-		},
-		socialColor: {
-			type: 'boolean',
-			default: false,
-		},
-		socialIconColor: {
-			type: 'string',
-			default: '#fff',
-		},
-		socialIconBackgroundColor: {
-			type: 'string',
-			default: '#d34836',
-		},
-		socialIconBorderColor: {
-			type: 'string',
-			default: '',
-		},
-
-		hoverEffect: {
-			type: 'boolean',
-			default: true,
-		},
-
-		hoverBackgroundColor: {
-			type: 'string',
-			default: '',
-		},
-
-		hoverBackgroundOpacity: {
-			type: 'number',
-			default: '.1',
-		},
-		facebookLink: {
-			type: 'string',
-			default: '',
-		},
-
-		twitterLink: {
-			type: 'string',
-			default: '',
-		},
-		googleplusLink: {
-			type: 'string',
-			default: '',
-		},
-
+		// design: {
+		// 	type: 'string',
+		// 	default: 'basic',
+		// },
+		// memberAlignment: {
+		// 	type: 'string',
+		// 	default: 'left',
+		// },
+		// items: {
+		// 	source: 'query',
+		// 	default: [],
+		// 	selector: '',
+		// 	query: gutenTeamAttribute,
+		// },
 	},
 
 	styles: [],
 
 	edit: editTeamMember,
-
+	// edit: function(props) {
+	// 	return (
+	// 		<div>
+	// 			hello team backend
+	// 		</div>
+	// 	)
+	// },
+	// save: function(props) {
+	// 	return (
+	// 		<div>
+	// 			hello team frontend
+	// 		</div>
+	// 	)
+	// },
 	save: function( props ) {
 		// Setup the attributes
 		const {
 			attributes: {
-				memberName,
-				memberNameColor,
-				memberNameFontSize,
-				memberDescription,
-				memberDescriptionColor,
-				memberDescriptionFontSize,
-				memberDesignation,
-				memberDesignationColor,
-				memberDesignationFontSize,
-				memberAlignment,
-				memberBackgroundColor,
-				memberboxshadow,
-				memberBorderRadius,
-				memberMargin,
-				memberPadding,
-				memberImgID,
-				memberImgURL,
-				memberImageStyle,
-				socialIconWidth,
-				socialIconHeight,
-				socialIconLineHeight,
-				socialIconShow,
-				socialColor,
-				socialIconColor,
-				socialIconBackgroundColor,
-				socialIconBorderColor,
-				hoverEffect,
-				hoverBackgroundColor,
-				hoverBackgroundOpacity,
-				facebookLink,
-				twitterLink,
-				googleplusLink,
+				items,
+				design,
 			},
-			className,
+			setAttributes,
 		} = props;
-
-		const fbStyle = ( socialColor ) ? {
-			color: '#fff',
-			backgroundColor: '#4267b2',
-			width: socialIconWidth,
-			height: socialIconWidth,
-		} : {
-			borderColor: socialIconBorderColor,
-			color: socialIconColor,
-			backgroundColor: socialIconBackgroundColor,
-			width: socialIconWidth,
-			height: socialIconWidth,
-		};
-
-		const twitterStyle = ( socialColor ) ? {
-			color: '#fff',
-			backgroundColor: '#1da1f2',
-			width: socialIconWidth,
-			height: socialIconWidth,
-		} : {
-			borderColor: socialIconBorderColor,
-			color: socialIconColor,
-			backgroundColor: socialIconBackgroundColor,
-			width: socialIconWidth,
-			height: socialIconWidth,
-		};
-
-		const googleStyle = ( socialColor ) ? {
-			color: '#fff',
-			backgroundColor: '#d34836',
-			width: socialIconWidth,
-			height: socialIconWidth,
-		} : {
-			borderColor: socialIconBorderColor,
-			color: socialIconColor,
-			backgroundColor: socialIconBackgroundColor,
-			width: socialIconWidth,
-			height: socialIconWidth,
-		};
-
 		return (
-			<TeamMember { ...props }>
-				<div className={ classnames(
-					'pb-team-image-container',
-					'pb-is-hoverable',
-					'pb-is-image-' + memberImageStyle
-				) }>
-					{ memberImgURL && (
-						<img src={ memberImgURL } alt="" className="pb-team-member-image" />
-					) }
-				</div>
-
-				<div className="pb-team-info pb-text-center">
-					{ memberName && (
-						<RichText.Content
-							className={ classnames(
-								className,
-								'pb-team-member-name'
-							) }
-							style={ {
-								color: memberNameColor,
-								textAlign: memberAlignment,
-							} }
-							tagName="h2"
-							value={ memberName }
-						/>
-					) }
-					{ memberDesignation && (
-						<RichText.Content
-							tagName="p"
-							className={ classnames(
-								className,
-								'pb-team-member-description'
-							) }
-							style={ {
-								color: memberDesignationColor,
-								fontSize: ( memberDesignationFontSize ) ? `${memberDesignationFontSize}px` : undefined,
-								textAlign: memberAlignment,
-							} }
-							value={ memberDesignation }
-						/>
-					) }
-
-					{ memberDescription && (
-						<RichText.Content
-							tagName="p"
-							className={ classnames(
-								className,
-								'pb-team-member-designation'
-							) }
-							style={ {
-								color: memberDescriptionColor,
-								fontSize: ( memberDescriptionFontSize ) ? `${memberDescriptionFontSize}px` : undefined,
-								textAlign: memberAlignment,
-							} }
-							value={ memberDescription }
-						/>
-					) }
-
-					<div className="pb-team-social">
-						<ul>
-							<li> <a href={ facebookLink } style={ fbStyle }> <Dashicon icon="facebook-alt" />
-							</a> </li>
-							<li> <a href={ twitterLink } style={ twitterStyle }> <Dashicon icon="twitter" /> </a> </li>
-							<li> <a href={ googleplusLink } style={ googleStyle }> <Dashicon icon="googleplus" /> </a> </li>
-						</ul>
-					</div>
-				</div>
-			</TeamMember>
+			<div>
+				{
+					items.sort( ( a, b ) => a.index - b.index ).map( ( item, index ) => {
+						return (
+							<TeamMember key={ index } { ...{ setAttributes, ...props } } item={ item }/>
+						)
+					} )
+				}
+			</div>
 		);
 	},
 } );

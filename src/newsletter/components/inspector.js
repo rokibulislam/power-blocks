@@ -1,9 +1,30 @@
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 const { InspectorControls, PanelColorSettings } = wp.editor;
-const { TextControl, PanelBody } = wp.components;
+const { TextControl, PanelBody,SelectControl } = wp.components;
 
 export default class Inspector extends Component {
+
+	onUpdateApiKey = (key) => {
+		console.log(key);
+		fetch( ajaxurl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body:"action=pb_mailchimp_block_save_key&api_key="+key
+        } ).then( function(response) {
+			console.log(response);
+            // return response.json();
+        } )
+	}
+
+	updateList( list ) {;        
+        fetch(ajaxurl, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            // body:"action=pb_mailchimp_block_save_list&list="+mc_list
+        });
+    }
+
 	render() {
 		const {
 			attributes: {
@@ -21,7 +42,6 @@ export default class Inspector extends Component {
 			},
 			setAttributes,
 		} = this.props;
-
 		return (
 			<div>
 				<InspectorControls>
@@ -29,7 +49,23 @@ export default class Inspector extends Component {
 						<TextControl
 							label={ 'API Key' }
 							value={ apiKey }
-							onChange={ ( value ) => setAttributes( { apiKey: value } ) }
+							onChange={ ( value ) => {
+								setAttributes( { apiKey: value } ) 
+                            	this.onUpdateApiKey( value ); 
+							} }
+						/>
+						<SelectControl class="wf-mailchimp-lists"
+							label={ 'List' }
+							value={ '' }
+							options={ '' }
+							onChange={ (value) => { 
+								if(!value){
+									value = '';
+								}
+								setAttributes({
+
+								});
+							} }
 						/>
 						<TextControl
 							label={ 'Email Field Label' }

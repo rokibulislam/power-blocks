@@ -4,9 +4,12 @@
       {
         "files": "*.test.js",
         "options": {
-            "trailingComma": "es5",
+            "trailingComma": "none",
             "tabWidth": 4,
-            "semi": false,
+            "semi": true,
+            "tabs": false,
+            "jsxBracketSameLine": false,
+            "parser": "flow",
             "singleQuote": true,
             "bracketSpacing": true,
         }

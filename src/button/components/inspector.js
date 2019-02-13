@@ -5,69 +5,115 @@ const {
 	InspectorControls,
 	PanelColorSettings,
 } = wp.editor;
-const { TextControl } = wp.components;
-
+const { TextControl, RadioControl } = wp.components;
+import DesignPanelBody from './designpanelbody';
 const { PanelBody, ToggleControl, SelectControl, RangeControl } = wp.components;
+
 export default class Inspector extends Component {
+
+	faqsUpdate( index, key, newValue ) {
+		const self = this;
+		const items = self.props.attributes.items;
+		return items.map( function( item, currIndex ) {
+			if ( index == currIndex ) {
+				item[ key ] = newValue;
+			}
+			return item;
+		} );
+	}
+
 	render() {
 		const {
 			attributes: {
-				buttonText,
-				buttonUrl,
-				borderRadius,
-				buttonSize,
-				buttonBackground,
-				borderColor,
-				hoverColor,
-				buttonTextColor,
-				buttonTarget,
-				buttonAlignment,
+				items,
+				design,
 			},
 			setAttributes,
+			state,
 		} = this.props;
 
+		// const onChangeHandler = value => setAttributes( { design: value } );
+
+		// const options=[
+		// 	{
+		// 		image: 'https://picsum.photos/89', label: 'Basic', value: 'basic',
+		// 	},
+		// 	{
+		// 		image: 'https://picsum.photos/89', label: 'Plain', value: 'plain',
+		// 	},
+		// ];
+
+		// const fixedOptions = options.map( option => {
+		// 	return {
+		// 		label: <img src={ option.image } alt={ '' } />,
+		// 		title: option.label,
+		// 		value: option.value,
+		// 	}
+		// } );
 		return (
 			<div>
 				<InspectorControls>
+
+					{/* <DesignPanelBody
+						options={ options }
+					>
+					</DesignPanelBody>
+
+					<RadioControl
+						// { ...props }
+						className="ugb-design-control"
+						selected={ design }
+						options={ fixedOptions }
+						// options={ [
+						// 	{ label: 'basic', value: 'basic' },
+						// ] }
+						onChange={ onChangeHandler }
+					/> */}
+
 					<PanelBody>
-						<TextControl
-							label="Button Text"
-							value={ buttonText }
-							onChange={ ( value ) => setAttributes( { buttonText: value } ) }
-						/>
+
 						<TextControl
 							label="Button Link"
-							value={ buttonUrl }
-							onChange={ ( value ) => setAttributes( { buttonUrl: value } ) }
-						/>
-						<ToggleControl
-							label={ __( 'Open link in new window' ) }
-							checked={ buttonTarget }
-							onChange={ value => {
-								setAttributes( { buttonTarget: value } );
-							} }
+							value={ ( state.selected !== -1 ) ? items[ state.selected ].buttonUrl : undefined }
+							onChange={ ( value ) => setAttributes( {
+								 items: this.faqsUpdate( state.selected, 'buttonUrl', value ),
+							} ) }
 						/>
 
-						<SelectControl
-							label="Button Size"
-							value={ buttonSize }
-							options={ [
-								{ label: 'Normal', value: '' },
-								{ label: 'Small', value: '.75em' },
-								{ label: 'Medium', value: '1.25em' },
-								{ label: 'Large', value: '1.5em' },
-							] }
-							onChange={ value => setAttributes( { buttonSize: value } ) }
+					<SelectControl
+						label="Button Size"
+						value={ ( state.selected !== -1 ) ? items[ state.selected ].buttonSize : undefined }
+						options={ [
+							{ label: "Normal", value: "" },
+							{ label: "Small", value: ".75em" },
+							{ label: "Medium", value: "1.25em" },
+							{ label: "Large", value: "1.5em" }
+						] }
+						onChange={ ( value ) => setAttributes( {
+							items: this.faqsUpdate( state.selected, 'buttonSize', value ),
+					    } ) }
+					/>
+
+						<ToggleControl
+							label={ __( 'Open link in new window' ) }
+							checked={ ( state.selected !== -1 ) ? items[ state.selected ].buttonTarget : undefined }
+							onChange={ value => {
+								setAttributes( {
+									items: this.faqsUpdate( state.selected, 'buttonTarget', value ),
+								} );
+							} }
 						/>
 
 						<RangeControl
 							label="Border Radius"
-							value={ borderRadius }
-							onChange={ value => setAttributes( { borderRadius: value } ) }
+							value={ ( state.selected !== -1 ) ? items[ state.selected ].borderRadius : undefined }
+							onChange={ value => setAttributes( {
+								items: this.faqsUpdate( state.selected, 'borderRadius', value ),
+							} ) }
 							min={ 1 }
-							max={ 100 }
-							initialPosition={ 0.1 }
-						/>
+							max={ 50 }
+							initialPosition={ 1 }
+						/> 
 
 						<PanelColorSettings
 							initialOpen={ false }
@@ -75,25 +121,40 @@ export default class Inspector extends Component {
 							colorSettings={ [
 								{
 									label: __( 'Background Color' ),
-									value: buttonBackground,
-									onChange: value => setAttributes( { buttonBackground: value } ),
+									value: ( state.selected !== -1 ) ? items[ state.selected ].buttonBackground : undefined ,
+									onChange: value => setAttributes( {
+										items: this.faqsUpdate( state.selected, 'buttonBackground', value ),
+									} ),
+								},
+								{
+									label: __( 'Border Color' ),
+									value: ( state.selected !== -1 ) ? items[ state.selected ].borderColor : undefined ,
+									onChange: value => setAttributes( {
+										items: this.faqsUpdate( state.selected, 'borderColor', value )
+									} ),
+								},
+								{
+									label: __( 'Hover Background Color' ),
+									value: ( state.selected !== -1 ) ? items[ state.selected ].buttonHoverBackground : undefined ,
+									onChange: value => setAttributes( {
+										items: this.faqsUpdate( state.selected, 'buttonHoverBackground', value ),
+									} ),
 								},
 
 								{
-									label: __( 'Border Color' ),
-									value: borderColor,
-									onChange: value => setAttributes( { borderColor: value } ),
-								},
-								{
 									label: __( 'Hover Color' ),
-									value: hoverColor,
-									onChange: value => setAttributes( { hoverColor: value } ),
+									value: ( state.selected !== -1 ) ? items[ state.selected ].hoverColor : undefined ,
+									onChange: value => setAttributes( {
+										items: this.faqsUpdate( state.selected, 'hoverColor', value ),
+									} ),
 								},
 
 								{
 									label: __( 'Text Color' ),
-									value: buttonTextColor,
-									onChange: value => setAttributes( { buttonTextColor: value } ),
+									value: ( state.selected !== -1 ) ? items[ state.selected ].buttonTextColor : undefined ,
+									onChange: value => setAttributes( {
+										items: this.faqsUpdate( state.selected, 'buttonTextColor', value ),
+									} ),
 								},
 							] }
 						/>

@@ -1,6 +1,3 @@
-/**
- * CallToAction Wrapper
- */
 // Import block dependencies and components
 import classnames from 'classnames';
 // Setup the block
@@ -8,7 +5,6 @@ const { Component } = wp.element;
 /**
  * Create a CallToAction wrapper Component
  */
-
 export default class CallToAction extends Component {
 	render() {
 		// Setup the attributes
@@ -29,6 +25,8 @@ export default class CallToAction extends Component {
 				ctaWidth,
 				ctaBackgroundColor,
 				ctaTextColor,
+				ctaPadding,
+				ctaMargin,
 			}
 		} = this.props;
 
@@ -42,12 +40,13 @@ export default class CallToAction extends Component {
 		const styles = {
 			backgroundColor: ctaBackgroundColor ? ctaBackgroundColor : undefined,
 			textAlign: buttonAlignment ? buttonAlignment : undefined,
+			padding: ctaPadding,
+			marign: ctaMargin,
 		};
 
 		return (
 			<div style={ styles } className={ className ? className : undefined } > { this.props.children } </div>
 		);
 	}
-
 }
 

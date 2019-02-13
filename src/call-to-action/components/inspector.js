@@ -37,10 +37,13 @@ export default class Inspector extends Component {
 			ctaTextFontSize,
 			ctaBackgroundColor,
 			ctaTextColor,
+			ctaTitleColor,
 			dimRatio,
 			imgURL,
 			imgID,
 			imgAlt,
+			ctaPadding,
+			ctaMargin,
 		} = this.props.attributes;
 		const { setAttributes } = this.props;
 
@@ -91,11 +94,77 @@ export default class Inspector extends Component {
 		// Update color values
 		const onChangeBackgroundColor = value => setAttributes( { ctaBackgroundColor: value } );
 		const onChangeTextColor = value => setAttributes( { ctaTextColor: value } );
+		const onChangeTitleColor = value => setAttributes( { ctaTitleColor: value } );
 		const onChangeButtonColor = value => setAttributes( { buttonBackgroundColor: value } );
 		const onChangeButtonTextColor = value => setAttributes( { buttonTextColor: value } );
 
 		return (
 			<InspectorControls key="inspector">
+				<PanelColorSettings
+					title={ __( 'Color Setting' ) }
+					initialOpen={ false }
+					colorSettings={
+						[
+							{
+								value: buttonBackgroundColor,
+								onChange: onChangeButtonColor,
+								label: __( 'Button Color' ),
+								colors: buttonColors,
+							},
+							{
+								value: buttonTextColor,
+								onChange: onChangeButtonTextColor,
+								label: __( 'Button Text Color' ),
+								colors: buttonColors,
+							},
+
+							{
+								value: ctaBackgroundColor,
+								onChange: onChangeBackgroundColor,
+								label: __( 'Background Color' ),
+								colors: buttonColors,
+							},
+							{
+								value: ctaTextColor,
+								onChange: onChangeTextColor,
+								label: __( 'Text Color' ),
+								colors: buttonColors,
+							},
+							{
+								value: ctaTitleColor,
+								onChange: onChangeTitleColor,
+								label: __( 'Title Color' ),
+								colors: buttonColors,
+							},
+						]
+					}
+				>
+
+				</PanelColorSettings>
+
+				<PanelBody
+					title={ __( 'Call To Action Settings' ) }
+					initialOpen={ false }
+				>
+
+					<RangeControl
+						label={ __( 'Margin' ) }
+						value={ ctaMargin }
+						onChange={ ( value ) => this.props.setAttributes( { ctaMargin: value } ) }
+						min={ 1 }
+						max={ 30 }
+						step={ 1 }
+					/>
+
+					<RangeControl
+						label={ __( 'Member Padding' ) }
+						value={ ctaPadding }
+						onChange={ ( value ) => this.props.setAttributes( { ctaPadding: value } ) }
+						min={ 1 }
+						max={ 30 }
+						step={ 1 }
+					/>
+				</PanelBody>
 				<PanelBody title={ __( 'Text Options' ) } initialOpen={ true }>
 					<RangeControl
 						label={ __( 'Title Font Size' ) }
@@ -114,17 +183,6 @@ export default class Inspector extends Component {
 						max={ 24 }
 						step={ 2 }
 					/>
-
-					<PanelColorSettings
-						title={ __( 'Text Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: ctaTextColor,
-							onChange: onChangeTextColor,
-							label: __( 'Text Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Background Options' ) } initialOpen={ false }>
@@ -170,17 +228,6 @@ export default class Inspector extends Component {
 						/>
 					) }
 
-					<PanelColorSettings
-						title={ __( 'Background Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: ctaBackgroundColor,
-							onChange: onChangeBackgroundColor,
-							label: __( 'Overlay Color' ),
-							colors: buttonColors,
-						} ] }
-					>
-					</PanelColorSettings>
 				</PanelBody>
 
 				<PanelBody title={ __( 'Button Options' ) } initialOpen={ false }>
@@ -217,29 +264,6 @@ export default class Inspector extends Component {
 							} );
 						} }
 					/>
-
-					<PanelColorSettings
-						title={ __( 'Button Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: buttonBackgroundColor,
-							onChange: onChangeButtonColor,
-							label: __( 'Button Color' ),
-							colors: buttonColors,
-						} ] }
-					>
-					</PanelColorSettings>
-
-					<PanelColorSettings
-						title={ __( 'Button Text Color' ) }
-						initialOpen={ false }
-						colorSettings={ [ {
-							value: buttonTextColor,
-							onChange: onChangeButtonTextColor,
-							label: __( 'Button Text Color' ),
-						} ] }
-					>
-					</PanelColorSettings>
 				</PanelBody>
 			</InspectorControls>
 		);

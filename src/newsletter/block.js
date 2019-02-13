@@ -1,11 +1,11 @@
 import EditNewsletter from './components/editnewsletter';
+import Newsletter from './components/newsletter';
 import './styles/style.scss';
 import './styles/editor.scss';
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
 registerBlockType( 'power-blocks/newsletter', {
-	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'Newsletter', 'power-blocks' ), // Block title.
+	title: __( 'Newsletter', 'power-blocks' ),
 	description: __( ' ', 'power-blocks' ),
 	icon: 'format-status',
 	category: 'power-blocks',
@@ -14,6 +14,10 @@ registerBlockType( 'power-blocks/newsletter', {
 	],
 	attributes: {
 		api_key: {
+			type: 'string',
+			default: '',
+		},
+		mc_list: {
 			type: 'string',
 			default: '',
 		},
@@ -64,12 +68,5 @@ registerBlockType( 'power-blocks/newsletter', {
 	],
 
 	edit: EditNewsletter,
-	save: function( props ) {
-
-		return (
-			<section>
-				Newsletter Frontend
-			</section>
-		);
-	},
+	save: Newsletter,
 } );

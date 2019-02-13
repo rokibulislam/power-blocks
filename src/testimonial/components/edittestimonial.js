@@ -1,7 +1,3 @@
-/**
- * Countup Wrapper
- */
-
 // Internationalization
 const { __ } = wp.i18n;
 // Extend component
@@ -20,7 +16,6 @@ const ALLOWED_MEDIA_TYPES = [ 'image' ];
 import classnames from 'classnames';
 import Testimonial from './testimonial';
 import Inspector from './inspector';
-
 export default class EditTestimonial extends Component {
 	// render
 	render() {
@@ -28,15 +23,24 @@ export default class EditTestimonial extends Component {
 		const {
 			attributes: {
 				testimonialName,
+				testimonialNameColor,
+				testimonialNameFontSize,
 				testimonialTitle,
-				testimonialContent,
+				testimonialTitleColor,
+				testimonialTitleFontSize,
+				testimonialContent, 
+				testimonialContentColor,
+				testimonialContentFontSize,
 				testimonialAlignment,
 				testimonialImgURL,
 				testimonialImgID,
 				testimonialBackgroundColor,
 				testimonialTextColor,
 				testimonialFontSize,
-				testimonialCiteAlign
+				testimonialCiteAlign,
+				testimonialImageStyle,
+				testimonialPadding,
+				testimonialMargin,
 			},
 			attributes,
 			isSelected,
@@ -61,33 +65,32 @@ export default class EditTestimonial extends Component {
 				/>
 			</BlockControls>,
 			// Show the block controls on focus
-			<Inspector
-				{ ...{ setAttributes, ...this.props } }
-			/>,
+			<Inspector { ...{ setAttributes, ...this.props } } key={ '' } />,
 			// Show the block markup in the editor
-			<Testimonial { ...this.props }>
+			<Testimonial { ...this.props } key={ ' ' } >
 				<RichText
 					tagName="div"
 					multiline="p"
-					placeholder={ __( 'Add testimonial text...', 'power-blocks' ) }
+					placeholder={ __( 'Add testimonial Content...', 'power-blocks' ) }
 					keepPlaceholderOnFocus
 					value={ testimonialContent }
 					formattingControls={ [ 'bold', 'italic', 'strikethrough', 'link' ] }
 					className={ classnames(
-						'power-testimonial-text'
+						'pb-testimonial-text'
 					) }
 					style={ {
 						textAlign: testimonialAlignment,
+						color: testimonialContentColor,
+						fontSize: ( testimonialContentFontSize ) ? `${testimonialContentFontSize}px` : undefined,
 					} }
 					onChange={ ( value ) => setAttributes( { testimonialContent: value } ) }
 				/>
-
-				<div class="ab-testimonial-info">
-					<div class="ab-testimonial-avatar-wrap">
-						<div class="ab-testimonial-image-wrap">
+				<div className="pb-testimonial-info">
+					<div className="pb-testimonial-avatar-wrap">
+						<div className="pb-testimonial-image-wrap">
 							<MediaUpload
 								buttonProps={ {
-									className: 'change-image'
+									className: 'change-image',
 								} }
 								onSelect={ ( img ) => setAttributes(
 									{
@@ -101,43 +104,44 @@ export default class EditTestimonial extends Component {
 								render={ ( { open } ) => (
 									<Button onClick={ open }>
 										{ <img
-											class="power-testimonial-avatar"
+											className="pb-testimonial-avatar"
 											src={ testimonialImgURL }
 											alt="avatar"
-										/>  }
+										/> }
 									</Button>
 								) }
 							>
 							</MediaUpload>
 						</div>
 					</div>
-
 					<RichText
 						tagName="h2"
 						placeholder={ __( 'Add name', 'power-blocks' ) }
 						keepPlaceholderOnFocus
 						value={ testimonialName }
-						className='power-testimonial-name'
+						className="pb-testimonial-name"
 						style={ {
-							color: testimonialTextColor
+							color: testimonialNameColor,
+							textAlign: testimonialAlignment,
+							fontSize: ( testimonialNameFontSize ) ? `${testimonialNameFontSize}px` : undefined,
 						} }
 						onChange={ ( value ) => this.props.setAttributes( { testimonialName: value } ) }
 					/>
-
 					<RichText
 						tagName="small"
 						placeholder={ __( 'Add title', 'power-blocks' ) }
 						keepPlaceholderOnFocus
 						value={ testimonialTitle }
-						className='power-testimonial-title'
+						className="pb-testimonial-title"
 						style={ {
-							color: testimonialTextColor
+							color: testimonialTitleColor,
+							textAlign: testimonialAlignment,
+							fontSize: ( testimonialTitleFontSize ) ? `${testimonialTitleFontSize}px` : undefined,
 						} }
 						onChange={ ( value ) => this.props.setAttributes( { testimonialTitle: value } ) }
 					/>
-
 				</div>
-			</Testimonial>
+			</Testimonial>,
 		];
 	}
 

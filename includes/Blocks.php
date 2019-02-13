@@ -9,7 +9,12 @@ class Blocks {
     function __construct() {
     	add_action( 'enqueue_block_assets', array( $this, 'frontend_assets' ) );
     	add_filter( 'block_categories', array( $this, 'register_block_category' ), 10, 2 );
-    	add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
+		add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueue_scripts'));	
+		if( is_admin() ){
+			add_action('wp_ajax_pb_mailchimp_block_save_key', array($this, 'save_key'));
+			add_action('wp_ajax_nopriv_pb_mailchimp_block_save_key', array($this, 'save_key'));
+		}
     }
 
     /**
@@ -73,5 +78,36 @@ class Blocks {
     		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
     		filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
     	);
-    }
+	}
+	
+	function enqueue_scripts(){
+		$pb_mailchimp_block = array('ajaxurl' => admin_url( 'admin-ajax.php'));
+		wp_localize_script('pb-mailchimp-block-frontend', 'pb_mailchimp_block', $pb_mailchimp_block);
+		wp_enqueue_script('wf-mailchimp-block-frontend');
+	} // enqueue_scripts
+
+
+	function save_key() {
+		// echo 'hello';
+		// exit();
+    	require_once __DIR__ . '/mailchimp.php';
+		// new PowerBlocks\MailChimp();
+		if (!empty($_POST['api_key'])) {
+			$api_key = sanitize_title($_POST['api_key']);
+			// $api_key = substr($api_key, 0, 40);
+			// echo $api_key;
+			// die();
+			try {
+				$mailchimp = new PowerBlocks\MailChimp($api_key);
+				$result = $mailchimp->makeRequest('GET','lists/');
+				wp_send_json_success($result);
+			  } catch(Exception $e) {
+				wp_send_json_error('Invalid API key.');
+			}
+			  
+		} else {
+			wp_send_json_error('Invalid API key.');
+		}
+		die();
+	}
 }

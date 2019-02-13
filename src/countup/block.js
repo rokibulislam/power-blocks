@@ -22,13 +22,52 @@ registerBlockType( 'power-blocks/countup', {
 		__( 'Countup', 'power-blocks' ),
 	],
 	attributes: {
-
+		backgroundColor: {
+			type: 'string',
+			default: 0,
+		},
+		title: {
+			type: 'string',
+			default: 0,
+		},
+		titleFontSize: {
+			type: 'number',
+			default: 0,
+		},
+		titleColor: {
+			type: 'string',
+			default: '#343434',
+		},
+		content: {
+			type: 'string',
+			default: 0,
+		},
+		contentFontSize: {
+			type: 'number',
+			default: 0,
+		},
+		contentColor: {
+			type: 'string',
+			default: '#343434',
+		},
+		description: {
+			type: 'string',
+			default: '',
+		},
+		descriptionFontSize: {
+			type: 'number',
+			default: 0,
+		},
+		descriptionColor: {
+			type: 'string',
+			default: '#343434',
+		},
 	},
 
 	styles: [
 
 	],
-	edit: editCountup, 
+	edit: editCountup,
 	save: function( props ) {
 		return (
 			<section>

@@ -3,7 +3,37 @@ const { Component, Fragment } = wp.element;
 const { AlignmentToolbar, BlockControls } = wp.editor;
 const { Toolbar } = wp.components;
 import Inspector from './inspector';
-export default class EditClickToTweet extends Component {
+import Controls from './controls';
+const { compose } = wp.compose;
+const { RichText } = wp.editor;
+import classnames from 'classnames';
+const { withSelect } = wp.data;
+
+/**
+ * Block constants
+ */
+const applyWithSelect = withSelect( ( select ) => {
+	const { getPermalink } = select( 'core/editor' );
+
+	return {
+		postLink: getPermalink(),
+	};
+} );
+
+class EditClickToTweet extends Component {
+
+	constructor() {
+		super( ...arguments );
+	}
+
+	componentWillReceiveProps( { postLink } ) {
+		if ( postLink ) {
+			this.props.setAttributes( {
+				url: postLink
+			} );
+		}
+	}
+	
 	render() {
 		const {
 			attributes: {
@@ -17,38 +47,53 @@ export default class EditClickToTweet extends Component {
 				via,
 			},
 			editable,
+			isSelected,
 			className,
 			setAttributes
 		} = this.props;
 
 		return (
 			<Fragment>
-				<BlockControls key="controls">
-					<AlignmentToolbar
-						value={ '' }
-						onChange={ ( value ) => setAttributes( { '': value } ) }
+				{ isSelected && (
+					<Controls
+						{ ...this.props }
 					/>
-					<Toolbar>
-					<label
-						aria-label={ __( 'Twitter Username' ) }
-						className={ `${ className }__via-label` }
-						htmlFor={ `${ className }__via` }
-					>
-					</label>
-					<input
-						aria-label={ __( 'Twitter Username' ) }
-						className={ `${ className }__via` }
-						id={ `${ className }__via` }
-						onChange={ ( event ) => setAttributes( { via: event.target.value } ) }
-						placeholder={ __( 'Username' ) }
-						type="text"
-						value={ via }
+				) }
+				{ isSelected && (
+					<Inspector
+						{ ...this.props }
 					/>
-				</Toolbar>
-				</BlockControls>
-				<Inspector { ...{ setAttributes, ...this.props } } />
-				<section>  Click To Tweet Admin </section>
+				) } 
+
+			    <blockquote className={ className } style={ { textAlign: textAlign } }>
+					<RichText
+						tagName="p"
+						multiline="false"
+						placeholder={ __( 'Add a quote to tweet...' ) }
+						value={ content }
+						onChange={ ( value ) => setAttributes( { content: value } ) }
+						style={ {
+							color: textColor,
+							fontSize: ( fontSize ) ? `${ fontSize }px` : undefined,
+						} }
+						keepPlaceholderOnFocus
+					/>
+					<RichText
+						tagName="span"
+						multiline="false"
+						placeholder={ __( 'Add button...' ) }
+						value={ 'Tweet' }
+						style={ {
+							backgroundColor: buttonColor,
+						} }
+						keepPlaceholderOnFocus
+					/>
+				</blockquote>
 			</Fragment>
 		)
 	}
 }
+
+export default compose( [
+	applyWithSelect
+] )( EditClickToTweet );

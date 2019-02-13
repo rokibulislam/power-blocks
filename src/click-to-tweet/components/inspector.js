@@ -30,9 +30,9 @@ export default class Inspector extends Component {
 							label="FontSize"
 							value={ fontSize }
 							onChange={ value => setAttributes( { fontSize: value } ) }
-							min={ 1 }
-							max={ 100 }
-							initialPosition={ 0.1 }
+							min={ 14 }
+							max={ 28 }
+							initialPosition={ 1 }
 						/>
 						<PanelColorSettings
 							initialOpen={ false }

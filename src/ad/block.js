@@ -14,7 +14,20 @@ registerBlockType( 'power-blocks/ad', {
 		__( 'Ad', 'power-blocks' ),
 	],
 	attributes: {
+		adBackgroundColor: {
+			type: 'string',
+			default: '',
+		},
+		adBackgroundImage: {
 
+		},
+		adImgID: {
+			type: 'string',
+			default: '',
+		},
+		adImgURL: {
+
+		},
 	},
 
 	styles: [

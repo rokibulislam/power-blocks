@@ -1,13 +1,7 @@
-/**
- * CallToAction Wrapper
- */
-
 // Components
 const { __ } = wp.i18n;
-
 // Setup the block
 const { Component } = wp.element;
-
 // Register editor components
 const {
 	AlignmentToolbar,
@@ -43,6 +37,7 @@ export default class EditCallToAction extends Component {
 				ctaTitle,
 				ctaText,
 				ctaTitleFontSize,
+				ctaTitleColor,
 				titleFontSize,
 				ctaTextFontSize,
 				ctaWidth,
@@ -102,27 +97,24 @@ export default class EditCallToAction extends Component {
 						value={ ctaTitle }
 						className={ classnames(
 							'power-cta-title',
-							// 'power-font-size-' + titleFontSize,
 						) }
 						style={ {
-							color: ctaTextColor,
-							fontSize: titleFontSize + 'px !important;',
+							color: ctaTitleColor,
+							fontSize: ( titleFontSize ) ? `${titleFontSize}px` : undefined,
 						} }
 						onChange={ ( value ) => setAttributes( { ctaTitle: value } ) }
 					/>
 					<RichText
-						tagName="div"
-						multiline="p"
+						tagName="p"
 						placeholder={ __( 'Call To Action Text', 'atomic-blocks' ) }
 						keepPlaceholderOnFocus
 						value={ ctaText }
 						style={ {
 							color: ctaTextColor,
-							fontSize: ctaTextFontSize + 'px !important;',
+							fontSize: ( ctaTextFontSize ) ? `${ctaTextFontSize}px` : undefined,
 						} }
 						className={ classnames(
 							'power-cta-text',
-							// 'power-font-size-' + ctaTextFontSize,
 						) }
 						onChange={ ( value ) => setAttributes( { ctaText: value } ) }
 					/>

@@ -67,6 +67,10 @@ registerBlockType( 'power-blocks/call-to-action', {
 			selector: '.ab-cta-title',
 			source: 'children',
 		},
+		ctaTitleColor: {
+			type: 'string',
+			default: '#32373c',
+		},
 		titleFontSize: {
 			type: 'number',
 			default: '32',
@@ -115,6 +119,14 @@ registerBlockType( 'power-blocks/call-to-action', {
 		ctaTitleFontSize: {
 			type: 'string',
 			default: '32',
+		},
+		ctaPadding: { 
+			type: 'number',
+			default: 0,
+		},
+		ctaMargin: {
+			type: 'number',
+			default: 0,
 		},
 	},
 

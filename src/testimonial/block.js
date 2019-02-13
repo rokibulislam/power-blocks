@@ -98,6 +98,17 @@ registerBlockType( 'power-blocks/testimonial', {
 			type: 'string',
 			default: 'left-aligned',
 		},
+		testimonialImageStyle: {
+			type: 'string',
+		},
+		testimonialPadding: {
+			type: 'number',
+			default: 0,
+		},
+		testimonialMargin: {
+			type: 'number',
+			default: 0,
+		},
 	},
 
 	styles: [

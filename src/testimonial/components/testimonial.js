@@ -10,21 +10,19 @@ import classnames from 'classnames';
  * Create a Testimonial wrapper Component
  */
 export default class Testimonial extends Component {
-	// Constructor
-	constructor( props ) {
-		super( ...arguments );
-	}
-
 	render() {
 		// Setup the attributes
-		const { 
-			attributes: { 
+		const {
+			attributes: {
 				testimonialAlignment, 
 				testimonialImgURL, 
 				testimonialBackgroundColor, 
 				testimonialTextColor, 
 				testimonialFontSize, 
-				testimonialCiteAlign 
+				testimonialCiteAlign,
+				testimonialImageStyle,
+				testimonialPadding,
+				testimonialMargin
 			}  
 		} = this.props;
 		return (
@@ -32,6 +30,8 @@ export default class Testimonial extends Component {
 				style={ {
 					backgroundColor: testimonialBackgroundColor,
 					color: testimonialTextColor,
+					margin: testimonialMargin,
+					padding: testimonialPadding,
 				} }
 				className={ classnames(
 					this.props.className,
