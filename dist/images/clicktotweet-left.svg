@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="233px" height="45px" viewBox="0 0 233 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 81</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="02-Click-to-Tweet-Settings-Page" transform="translate(-1032.000000, -447.000000)">
+            <g id="Group-81" transform="translate(1032.000000, 447.000000)">
+                <g id="Group-76" transform="translate(0.078341, 0.500000)">
+                    <path d="M186.302995,43.75 L186.302995,0.25 L5,0.25 C2.37664744,0.25 0.25,2.37664744 0.25,5 L0.25,39 C0.25,41.6233526 2.37664744,43.75 5,43.75 L186.302995,43.75 Z" id="Rectangle-Copy-97" stroke="#40A6FD" stroke-width="0.5" fill="#FFFFFF"></path>
+                    <path d="M186.802995,0.25 L186.802995,43.75 L227.921659,43.75 C230.545012,43.75 232.671659,41.6233526 232.671659,39 L232.671659,5 C232.671659,2.37664744 230.545012,0.25 227.921659,0.25 L186.802995,0.25 Z" id="Rectangle-Copy-98" stroke="#40A6FD" stroke-width="0.5" fill="#008AFF"></path>
+                    <circle id="Oval" fill="#FFFFFF" cx="209.993088" cy="22.5" r="10.5"></circle>
+                    <g id="Group-14" transform="translate(10.783410, 10.000000)">
+                        <rect id="Rectangle" fill="#ADD7FB" x="9.70506912" y="20" width="22.6451613" height="4" rx="2"></rect>
+                        <rect id="Rectangle-Copy" fill="#40A6FD" x="0" y="0" width="121.852535" height="4" rx="2"></rect>
+                        <circle id="Oval" fill="#40A6FD" cx="3" cy="22" r="3"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

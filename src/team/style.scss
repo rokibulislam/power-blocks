@@ -1,0 +1,239 @@
+.power-blocks-team {
+	// .editor-block-list__layout{
+	// 	display: flex;
+	// 	flex-flow: row wrap;
+	// }
+}
+
+// [data-type="power-blocks/team-item"] {
+// 	&.editor-block-list__block {
+// 	    max-width: 50% !important;
+// 	    flex-basis: 50% !important;
+// 	}
+// }
+
+
+.power-blocks-team-row {
+	max-width: initial !important;
+	display: flex;
+	flex-wrap: wrap;
+	width: calc(100% + 30px);
+	.power-blocks-team-item {
+		flex-basis: 50%;
+		max-width: 50%;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	&.is-col-1 {
+		.power-blocks-team-item {
+			flex-basis: 100%;
+			max-width: 100%;
+		}
+	}
+	&.is-col-3 {
+		.power-blocks-team-item {
+			flex-basis: 33.33%;
+			max-width: 33.33%;
+		}
+	}
+	&.is-col-4 {
+		.power-blocks-team-item {
+			flex-basis: 25%;
+			max-width: 25%;
+		}
+	}
+}
+.power-blocks-team {
+	.editor-block-list__layout {
+		display: flex;
+		flex-wrap: wrap;
+		.editor-block-list__block {
+			flex-basis: 50%;
+			max-width: 50%;
+		}
+	}
+	&.is-col-1 {
+		.editor-block-list__block {
+			flex-basis: 100%;
+			max-width: 100%;
+		}
+	}
+	&.is-col-3 {
+		.editor-block-list__block {
+			flex-basis: 33.33%;
+			max-width: 33.33%;
+		}
+	}
+	&.is-col-4 {
+		.editor-block-list__block {
+			flex-basis: 25%;
+			max-width: 25%;
+		}
+	}
+}
+
+
+
+.pb-team-member {
+    // display: inline-block;
+	margin-bottom: 40px;
+
+	&.pb-team-member-background {
+		background: #2574A9;
+	}
+
+	.pb-team-image-container{
+		margin-bottom: 22px;
+		height: 205px;
+    	overflow: hidden;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+		&.pb-is-hoverable {
+			position: relative;
+			.pb-team-image-hover {
+				position: absolute;
+			    background: #DCDEE1;
+			    top: 0;
+			    left: 0;
+			    width: 100%;
+			    height: calc(100% - 4px);
+			    opacity: .81;
+			    display: flex;
+			    visibility: hidden;
+			    opacity: 0;
+			    align-items: center;
+			    justify-content: center;
+			    transition: all .3s;
+			}
+			&:hover .pb-team-image-hover {
+				visibility: visible;
+				opacity: 0.8;
+			}
+		}
+
+		button {
+			padding: 0;
+		}
+
+		svg {
+			// width: 100%;
+			// max-height: 50px;
+			// fill: #ddd;
+			// max-width: 40%;
+			// width: 100%;
+			width: 40px;
+			height: 40px;
+			color:red;
+		}
+		&:hover {
+			background: #fff;
+			color: #fff;
+		}
+		&:focus {
+			box-shadow: 0 0 0 2px rgba(30, 140, 190, 0.8);
+			background: #fff;
+			color: #fff;
+		}
+	}
+
+	.pb-is-image-circle {
+		img,
+		{
+			border-radius: 100%;
+		}
+		// .pb-team-image-hover
+	}
+
+	.pb-team-member-image{
+		max-width: 100%;
+		// background-color: #FFF;
+		border: 1px solid #DCDEE1;
+		box-sizing: border-box;
+		// width: 200px;
+		// height: 200px;
+		// max-height: 200px;
+
+	}
+
+	.pb-team-member-name{
+		font-family: Helvetica;
+		font-size: 24px;
+		color: #000000;
+		letter-spacing: 0.33px;
+		color: #fff;
+		margin-bottom: 5px;
+	}
+
+	h2.pb-team-member-name:before {
+		display: none;
+	}
+
+	.pb-team-member-designation{
+		font-family: Helvetica;
+		font-size: 15px;
+		color: #575D64;
+		letter-spacing: 0;
+		color: #fff;
+		margin-bottom: 10px;
+	}
+
+	.pb-team-member-description {
+		font-family: Helvetica;
+		font-size: 15px;
+		letter-spacing: 0;
+		line-height: 18px;
+		color: #fff;
+		margin-bottom: 12px;
+	}
+
+	.pb-team-member-padding {
+		padding-left: 42px;
+		padding-right: 41px;
+	}
+
+	.pb-team-social ul li {
+		display: inline-flex;
+		margin-right: 20px;
+	}
+
+	.pb-team-social ul li a{
+		border-radius: 100%;
+		text-align: center;
+	}
+
+	.pb-text-left{
+		text-align: left;
+	}
+
+	.pb-text-right{
+		text-align: right;
+	}
+
+	.pb-text-center {
+		text-align: center;
+	}
+}
+
+.pb-component-image-picker-item {
+	&.team_basic{
+		// background: url('../src/team/images/basic.png') no-repeat; 
+		width: 100px;
+		height: 100px;
+		background-size: contain;
+	}
+
+	&.team_advance{
+		// background: url('../src/team/images/advance.png') no-repeat;
+		width: 100px;
+		height: 100px;
+		background-size: contain;
+	}
+}
+
+// .pb-component-image-picker-item {
+// 	background: url('../src/team/images/a.jpg')
+// 		no-repeat;
+// 	width: 50px;
+// 	height: 50px;
+// }

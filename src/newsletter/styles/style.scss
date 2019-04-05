@@ -1,0 +1,36 @@
+.pb-mc-name, .pb-mc-email {
+	width: 396px;
+	box-sizing: border-box;
+	height: 48px;
+	padding: 2px;
+	border: 1px solid #DDDDDD;
+	margin-bottom: 20px;
+	color: #72777C;
+}
+
+.pb-mc-submit{
+	width: 396px;
+	box-sizing: border-box;
+	height: 35px;
+	display: block;
+	color: #72777C;
+	text-align: center;
+	padding: 5px !important;
+}
+
+
+.pb-component-image-picker-item {
+	&.mailchimp_basic{
+		// background: url('../src/newsletter/images/mailchimp_basic.png') no-repeat;
+		width: 100px;
+		height: 100px;
+		background-size: contain;
+	}
+
+	&.mailchimp_advance{
+		// background: url('../src/newsletter/images/mailchimp_advance.png')no-repeat;
+		width: 100px;
+		height: 100px;
+		background-size: contain;
+	}
+}

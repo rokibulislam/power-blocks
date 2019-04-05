@@ -1,0 +1,19 @@
+.power-blocks-team {
+
+}
+// hide drag handler from team items
+[data-type="power-blocks/team-item"] > .editor-block-mover > .editor-block-mover__control-drag-handle {
+    display: none;
+}
+
+.power-blocks-team-add-item {
+    padding-bottom: 20px;
+
+    .components-button {
+        margin: 0 auto;
+
+        svg {
+            margin-right: 10px;
+        }
+    }
+}

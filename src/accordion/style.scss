@@ -1,0 +1,59 @@
+/**
+ * Frontend Styles
+ */
+.pb-accordion {
+	.pb-accordion-item + .pb-accordion-item .pb-accordion-item-heading {
+		border-top: 1px solid #f3f4f5;
+	}
+
+	.pb-accordion-item-heading {
+		position: relative;
+		display: block;
+		padding: .75em 0;
+		padding-right: 46px;
+		font-weight: 500;
+		color: inherit;
+		text-decoration: none;
+		cursor: pointer;
+		border-bottom: none;
+		box-shadow: none;
+		transition: .15s opacity;
+		will-change: opacity;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	.pb-accordion-item-collapse {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		top: 0;
+		right: 0;
+		width: 46px;
+		height: 100%;
+		font-size: .7em;
+		cursor: pointer;
+		background: none;
+		border: none;
+		outline: none;
+		transition: .15s transform;
+		will-change: trasnform;
+	}
+
+	.pb-accordion-item-content {
+		display: none;
+		padding: .75em 0;
+	}
+
+	.pb-accordion-item-active {
+		.pb-accordion-item-collapse {
+			transform: rotate(90deg);
+		}
+		.pb-accordion-item-content {
+			display: block;
+		}
+	}
+}

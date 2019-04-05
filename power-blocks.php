@@ -34,6 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * @class PowerBlocks The class that holds the entire PowerBlocks plugin
  */
+define('power_blocks_DIR_URL', plugin_dir_url(__FILE__));
+
 class PowerBlocks {
 
     /**
